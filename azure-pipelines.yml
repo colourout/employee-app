@@ -1,0 +1,39 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  MAVEN_OPTS: '-Xmx1024m'
+
+stages:
+
+- stage: Build
+  displayName: Build and Test
+
+  jobs:
+  - job: MavenBuild
+    displayName: Maven Build
+
+    steps:
+
+    - checkout: self
+
+    - task: Maven@4
+      displayName: Maven Clean Package
+      inputs:
+        mavenPomFile: 'pom.xml'
+        goals: 'clean package'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '1.21'
+        mavenVersionOption: 'Default'
+
+    - task: PublishBuildArtifacts@1
+      displayName: Publish WAR Artifact
+      inputs:
+        PathtoPublish: 'target'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'

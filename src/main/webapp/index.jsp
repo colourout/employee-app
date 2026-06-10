@@ -1,15 +1,19 @@
 <html>
 <head>
-<title>Employee Portal</title>
+    <title>Employee Management System</title>
 </head>
 
 <body>
 
 <h1>Employee Management System</h1>
 
-<p>Welcome to Azure DevOps CI/CD Demo</p>
+<h3>Version 1.0.0</h3>
 
-<a href="employees">Employee Service</a>
+<ul>
+    <li><a href="employees">Employee List</a></li>
+    <li><a href="health">Health Check</a></li>
+    <li><a href="version">Version Information</a></li>
+</ul>
 
 </body>
 </html>
