@@ -72,6 +72,9 @@ stages:
         contents: 'employee-app.war'
         targetFolder: '/home/ubuntu/'      
 
+    # =========================
+    # 🔹 COPY Scripts TO EC2
+    # =========================  
     - task: CopyFilesOverSSH@0
       displayName: Copy Deploy Script
       inputs:
