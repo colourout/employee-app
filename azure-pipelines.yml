@@ -70,8 +70,16 @@ stages:
         sshEndpoint: 'EC2-DEV-SSH-CONN'   # 👈 MUST match Service Connection name
         sourceFolder: '$(Pipeline.Workspace)/drop'
         contents: 'employee-app.war'
-        targetFolder: '/home/ubuntu/'
+        targetFolder: '/home/ubuntu/'      
 
+    - task: CopyFilesOverSSH@0
+      displayName: Copy Deploy Script
+      inputs:
+        sshEndpoint: 'EC2-DEV-SSH-CONN'
+        sourceFolder: '$(Build.SourcesDirectory)/scripts'
+        contents: 'deploy.sh'
+        targetFolder: '/home/ubuntu/'      
+    
     # =========================
     # 🔹 DEPLOY TO TOMCAT
     # =========================
